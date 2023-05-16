@@ -5,13 +5,25 @@ on:
 
 jobs:
   Job1:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
+     runs-on: ubuntu-latest
+     outputs:
+        status: ${{ steps.jobstatus.outputs.status }}
+        JOB_NAME: ${{ steps.jobstatus.outputs.JOB_NAME }}
+     steps:
+       - name: check tag
+         run: |
           echo test
-          echo ${{ job.status }}
-          JOB_ID=${{ github.job }}
-          echo $JOB_ID is JOB_ID
+          
+       - name: Check status
+         id: jobstatus
+         run: |
+           echo ${{ job.status }}
+           status=${{ job.status }}
+           if [[ ${{ job.status }} == failure ]];then
+                JOB_NAME=${{ github.job }}
+           fi
+           echo "status=$status" >> $GITHUB_OUTPUT
+           echo "JOB_NAME=$JOB_NAME" >> $GITHUB_OUTPUT
           
         
   Job2:
@@ -32,6 +44,8 @@ jobs:
           pwd
           ls -lrta
           exit 1
+          Variable="Job1"
+          echo ${{ needs.$Variable.outputs.JOB_NAME }}
           
       - name: checking job status
         if: always()
