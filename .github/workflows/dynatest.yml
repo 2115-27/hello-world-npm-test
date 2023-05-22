@@ -10,4 +10,4 @@ jobs:
           steps: 
             - uses: actions/checkout@v3
             - run: |
-                git log ${{ github.ref_name }} --oneline
+                git log --decorate --oneline --graph
