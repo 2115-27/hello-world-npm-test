@@ -10,7 +10,7 @@ jobs:
           steps: 
             - uses: actions/checkout@v3
             - run: |
-                git log --decorate --oneline --graph
+                git log 
                 
             - name: curl command to list commits
               run: |
