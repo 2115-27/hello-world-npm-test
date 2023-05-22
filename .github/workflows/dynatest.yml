@@ -1,28 +1,13 @@
 name: DYNA_TEST
 on:
   workflow_dispatch:
-  
-      inputs: 
-       version:
-        description: 'Version'
-        required: true
-        type: string       
-       environment:
-        required: true
-        type: choice
-        description: environment
-        options: 
-          - pg
-          - agt
-          - wgpg
-          - aspg
-          - dev
-          - test
-   
+ 
 jobs:
 
-    testJob2: 
+    Get-Commit-History: 
 #           needs: [RefreshDynaJS]
           runs-on: ubuntu-latest
           steps: 
-            -  run: echo ${{ github.workflow }} is workflow name 
+            - uses: actions/checkout@v3
+            - run: |
+                git log ${{ github.ref_name }} --oneline
