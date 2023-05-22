@@ -5,6 +5,3 @@ function helloWorld() {
 module.exports = {
   helloWorld: helloWorld
 }
-
-
-// testing
