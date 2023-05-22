@@ -6,7 +6,7 @@
 
 import 'zone.js';  // Included with Angular CLI.
 
-
+<!-- testing git commit in sample.ts -->
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
