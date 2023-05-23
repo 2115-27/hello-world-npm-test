@@ -14,6 +14,10 @@ jobs:
                 
             - name: curl command to list workflow runs
               run: |
-                 curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs"
+                 PreviousRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[2].id')
+                 CurrentRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[1].id')
+                 echo $PreviousRunID is PreviousRunID
+                 echo $CurrentRunID is CurrentRunID
+                 echo ${{ github.run_id }} is github.run_id
               env:
                 GH_TOKEN: ${{ github.token }}   
