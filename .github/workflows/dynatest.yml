@@ -14,6 +14,6 @@ jobs:
                 
             - name: curl command to list workflow runs
               run: |
-                 curl -s "https://api.github.com/repos/${{ github.repository }}/actions/required_workflows/dynatest.yml/runs"
+                 curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs"
               env:
                 GH_TOKEN: ${{ github.token }}   
