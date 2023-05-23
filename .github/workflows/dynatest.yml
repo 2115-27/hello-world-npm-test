@@ -9,11 +9,11 @@ jobs:
           runs-on: ubuntu-latest
           steps: 
             - uses: actions/checkout@v3
-            - run: |
-                git log 
+#             - run: |
+#                 git log 
                 
-            - name: curl command to list commits
+            - name: curl command to list workflow runs
               run: |
-                 curl -s "https://api.github.com/repos/${{ github.repository }}/commits"
+                 curl -s "https://api.github.com/repos/${{ github.repository }}/actions/required_workflows/dynatest.yml/runs"
               env:
                 GH_TOKEN: ${{ github.token }}   
