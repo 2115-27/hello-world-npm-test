@@ -24,6 +24,8 @@ jobs:
                  curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/37222667/commits"
                  
                  echo ##################################################
+                 git log
+                 echo -------------------------------------
                  git log 4bb34ec..b0d2cff
                  
               env:
