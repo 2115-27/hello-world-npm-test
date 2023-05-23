@@ -26,7 +26,7 @@ jobs:
                  echo ##################################################
                  git log
                  echo -------------------------------------
-                 git log 4bb34ec..b0d2cff
+                 git log fa8f8d6..161976c
                  
               env:
                 GH_TOKEN: ${{ github.token }}   
