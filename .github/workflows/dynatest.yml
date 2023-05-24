@@ -9,24 +9,32 @@ jobs:
           runs-on: ubuntu-latest
           steps: 
             - uses: actions/checkout@v3
+            - name: Generate Commit History
+              run: |
+                git fetch --unshallow || true
+                git log --format="- %s (%an)" $(git describe --tags --abbrev=0)..HEAD > commit_history.txt
+                cat commit_history.txt
+                
+                
+                
 #             - run: |
 #                 git log 
                 
-            - name: curl command to list workflow runs
-              run: |
+#             - name: curl command to list workflow runs
+#               run: |
                  
-                 PreviousRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[2].id')
-                 CurrentRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[1].id')
-                 echo $PreviousRunID is PreviousRunID
-                 echo $CurrentRunID is CurrentRunID
-                 echo ${{ github.run_id }} is github.run_id
+#                  PreviousRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[2].id')
+#                  CurrentRunID=$(curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs" | jq -r '.workflow_runs[1].id')
+#                  echo $PreviousRunID is PreviousRunID
+#                  echo $CurrentRunID is CurrentRunID
+#                  echo ${{ github.run_id }} is github.run_id
                  
-                 curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/37222667/commits"
+#                  curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/37222667/commits"
                  
-                 echo ##################################################
-                 git log
-                 echo -------------------------------------
-                 git log fa8f8d6..161976c
+#                  echo ##################################################
+#                  git log
+#                  echo -------------------------------------
+#                  git log fa8f8d6..161976c
                  
-              env:
-                GH_TOKEN: ${{ github.token }}   
+#               env:
+#                 GH_TOKEN: ${{ github.token }}   
