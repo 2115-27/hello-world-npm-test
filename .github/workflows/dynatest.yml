@@ -11,8 +11,11 @@ jobs:
             - uses: actions/checkout@v3
             - name: Generate Commit History
               run: |
+                echo ############### git fetch command ###########################
                 git fetch --unshallow || true
+                echo ################### git log #################################
                 git log --format="- %s (%an)" $(git describe --tags --abbrev=0)..HEAD > commit_history.txt
+                echo #################### commit_history.txt ########################
                 cat commit_history.txt
                 
                 
