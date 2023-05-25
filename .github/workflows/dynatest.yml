@@ -3,20 +3,25 @@ on:
   workflow_dispatch:
  
 jobs:
+    Date:
+      runs-on: ubuntu-latest
+      steps:
+        - run: date -u -d "2023-05-24T22:00:00Z" +"%Y-%m-%d %H:%M:%S" -d "2 hours"
 
-    Get-Commit-History: 
-#           needs: [RefreshDynaJS]
-          runs-on: ubuntu-latest
-          steps: 
-            - uses: actions/checkout@v3
-            - name: Generate Commit History
-              run: |
-                echo ############### git fetch command ###########################
-                git fetch --unshallow || true
-                echo ################### git log #################################
-                git log --format="- %s (%an)" $(git describe --tags --abbrev=0)..HEAD > commit_history.txt
-                echo #################### commit_history.txt ########################
-                cat commit_history.txt
+
+#     Get-Commit-History: 
+# #           needs: [RefreshDynaJS]
+#           runs-on: ubuntu-latest
+#           steps: 
+#             - uses: actions/checkout@v3
+#             - name: Generate Commit History
+#               run: |
+#                 echo ############### git fetch command ###########################
+#                 git fetch --unshallow || true
+#                 echo ################### git log #################################
+#                 git log --format="- %s (%an)" $(git describe --tags --abbrev=0)..HEAD > commit_history.txt
+#                 echo #################### commit_history.txt ########################
+#                 cat commit_history.txt
                 
                 
                 
