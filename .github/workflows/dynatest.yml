@@ -6,7 +6,7 @@ jobs:
     Date:
       runs-on: ubuntu-latest
       steps:
-        - run: date -u -d "2023-05-24T22:00:00Z" +"%Y-%m-%d %H:%M:%S" -d "2 hours"
+        - run: date -u -d '2023-05-26T06:55:17Z' +'%Y-%m-%d %H:%M:%S' -d '1 hour'
 
 
 #     Get-Commit-History: 
