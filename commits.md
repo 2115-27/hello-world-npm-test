@@ -66,3 +66,5 @@
 - 2115-27 - Update aws-email.yml - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//9ed47a8b4ef5576a95602a733882d8ee3907d513) 
 - GitHub Actions 3 - Changes in recent PR - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//6df4a3fe0fa418666d98eac6a33a9c85e41e7a5c) 
 - 2115-27 - Update aws-email.yml - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//d3c4ed34dadb445cd4497714cfca9d1846996435) 
+- GitHub Actions 3 - Changes in recent PR - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//56ea9219f96c3d4e419048fbaff616d42ef98a51) 
+- 2115-27 - Update message.html - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//5d8d10db2508ad69b6b3fdedae52d9bd3a594f84) 
