@@ -64,3 +64,5 @@
 - 2115-27 - Update dynatest.yml - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//9317d65718498fd87e372321bae646c1dd0c82dd) 
 - GitHub Actions 3 - Changes in recent PR - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//f4910ad7d9346a3f85e56bf5a6f8dd77615378a4) 
 - 2115-27 - Update aws-email.yml - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//9ed47a8b4ef5576a95602a733882d8ee3907d513) 
+- GitHub Actions 3 - Changes in recent PR - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//6df4a3fe0fa418666d98eac6a33a9c85e41e7a5c) 
+- 2115-27 - Update aws-email.yml - [details](https://github.com/2115-27/hello-world-npm/pull/36/commits//d3c4ed34dadb445cd4497714cfca9d1846996435) 
