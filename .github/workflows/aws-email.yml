@@ -86,11 +86,13 @@ jobs:
           echo $JobName is JobName
           
           echo ----------Adding workflow details to html--------------
-          sed -i "/<pre>/r runDetails.txt" message.html
+          sed -i '/<pre id="run-details">/r runDetails.txt' message.html
+          
+          sed -i '/<pre id="commit-details">/r commits.md' message.html
+          #sed -i "/<pre>/r runDetails.txt" message.html
           echo -------------------------
           cat message.html
           echo ---------------------------
-
           sed -i "s#RepoNameValue#$RepoName#g" message.html
           sed -i "s#JobName#$JobName#g" message.html
           sed -i "s#STATUSVALUE#$STATUSVALUE#g" message.html
@@ -109,6 +111,5 @@ jobs:
         run: |
           subject="${{ steps.subid.outputs.subject }}"
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --subject "$subject" --html file://message.html
-          
           
           
