@@ -28,7 +28,7 @@ jobs:
                 if [[ $ad_num1 =~ ^AB#.*[0-9]$ ]];then
                   echo Valid UserStory.. 
                   exit 0
-                else
+                fi
                 cat pr-info.json 
                 
      
