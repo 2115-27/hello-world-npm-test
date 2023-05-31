@@ -16,7 +16,19 @@ jobs:
           - name: View Pull Request
             run: |
                 gh pr view --json title,body --jq '.title,.body' > pr-info.json
-
+                
+                gh pr view  >> comments.txt 
+                comment=$(grep "AB#" comments.txt)
+                echo $comment is comment
+                ad_num=$(echo $comment | awk -F']' '{print $1}')
+                echo $ad_num
+                ad_num1="${ad_num#?}"
+                echo $ad_num1
+                echo $ad_num1 is AzureDevOps User Story
+                if [[ $ad_num1 =~ ^AB#.*[0-9]$ ]];then
+                  echo Valid UserStory.. 
+                  exit 0
+                else
                 cat pr-info.json 
                 
      
