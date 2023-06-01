@@ -3,35 +3,27 @@ on:
   workflow_dispatch:
 jobs:
    
-#      Set_ReleaseVersion_Variable: 
-#       runs-on: ubuntu-latest
-#       outputs:
-#         Version: ${{ steps.versionid.outputs.Version }}
-
-#       steps:
-#         - id: versionid
-#           run: | 
-#                echo setting release version!!
-#                newversion="23.01.0.147"
-#                echo $newversion is the version
-#                echo "Version=$newversion" >> $GITHUB_OUTPUT
      TestJob: 
-      runs-on: ubuntu-latest
+      runs-on: windows-latest
 #       needs: [Set_ReleaseVersion_Variable]
       steps:   
-        - run: echo testing parent 
+        - uses: actions/checkout@v3
+        - run: |
+            
+            Get-ChildItem -Path ${{ github.workspace }}
+
      
-     Job2:
-      needs: TestJob
-      uses: ./.github/workflows/child.yml
+#      Job2:
+#       needs: TestJob
+#       uses: ./.github/workflows/child.yml
       
-     Send-email:
-       if: always()
-       needs: [TestJob,Job2]         
-       uses: ./.github/workflows/aws-email.yml
-       secrets:
-          AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID  }}
-          AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
+#      Send-email:
+#        if: always()
+#        needs: [TestJob,Job2]         
+#        uses: ./.github/workflows/aws-email.yml
+#        secrets:
+#           AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID  }}
+#           AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
        
          
          
