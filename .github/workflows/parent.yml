@@ -11,6 +11,7 @@ jobs:
         - run: |
             
             Get-ChildItem -Path ${{ github.workspace }}
+            Get-ChildItem -Path ./
 
      
 #      Job2:
