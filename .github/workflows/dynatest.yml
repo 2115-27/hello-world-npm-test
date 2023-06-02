@@ -10,9 +10,7 @@ jobs:
           steps:
           - name: Checkout Repository
             uses: actions/checkout@v2
-            with:
-                ref: ${{ github.event.pull_request.head.ref }}
-
+          
           - name: View Pull Request
             run: |
                 pwd
@@ -47,24 +45,24 @@ jobs:
           - run: |
               pwd
               ls -lrta
-              mkdir Current-branch
-              echo ---------------current branch is here-------------
-              pwd
-              ls -lrta
+              #mkdir Current-branch
+              #echo ---------------current branch is here-------------
+              #pwd
+              #ls -lrta
 
           
-          - name: Checkout branch
-            uses: actions/checkout@v3
-            with: 
-              ref: 'base-branch'
-              path: 'Current-branch'
+#           - name: Checkout branch
+#             uses: actions/checkout@v3
+#             with: 
+#               ref: 'base-branch'
+#               path: 'Current-branch'
           
-          - run: |
-              pwd 
-              ls -lrta
-              mv commits.md Current-branch
-              cd Current-branch/
-              ls -lrta
+#           - run: |
+#               pwd 
+#               ls -lrta
+#               mv commits.md Current-branch
+#               cd Current-branch/
+#               ls -lrta
               
           - name: Set identity and push
             run: |
