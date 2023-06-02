@@ -10,6 +10,8 @@ jobs:
           steps:
           - name: Checkout Repository
             uses: actions/checkout@v2
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
           
           - name: View Pull Request
             run: |
@@ -26,6 +28,7 @@ jobs:
                 if [ -f "commits.md" ]; then
                     rm "commits.md"
                 fi
+                
                 
                 echo ------------------------commits.md---------------------------------
                 PRNumber=$(gh pr view -c --json number --jq '.number')
