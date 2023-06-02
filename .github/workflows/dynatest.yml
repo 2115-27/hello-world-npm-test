@@ -62,8 +62,8 @@ jobs:
           - run: |
               pwd 
               ls -lrta
-              cp commits.md Current-branch
-              #cd Current-branch/
+              mv commits.md Current-branch
+              cd Current-branch/
               ls -lrta
               
           - name: Set identity and push
@@ -74,8 +74,6 @@ jobs:
               git add commits.md
               git commit -m "Changes in recent PR"
               echo ${{ github.event.pull_request.base.ref }} is branch
-              git stash
-              git pull origin base-branch
               git push origin HEAD:${{ github.event.pull_request.base.ref }}
                
             env:
