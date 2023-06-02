@@ -27,6 +27,7 @@ jobs:
                     rm "commits.md"
                 fi
                 
+                
                 echo ------------------------commits.md---------------------------------
                 PRNumber=$(gh pr view -c --json number --jq '.number')
                 echo $PRNumber is PRNumber
