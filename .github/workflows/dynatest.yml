@@ -1,15 +1,17 @@
 name: DYNA_TEST
 on:
   pull_request:
-#      types: [closed]
+     types: [closed]
           
 jobs:
         PR-commits:
-#           if: github.event.pull_request.merged == true
+          if: github.event.pull_request.merged == true
           runs-on: ubuntu-latest
           steps:
           - name: Checkout Repository
             uses: actions/checkout@v2
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
           
           - name: View Pull Request
             run: |
