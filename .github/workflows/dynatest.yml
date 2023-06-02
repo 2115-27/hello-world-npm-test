@@ -15,6 +15,8 @@ jobs:
 
           - name: View Pull Request
             run: |
+                pwd
+                echo #################################
                 echo ------------------commits---------------------
                 gh pr view --json commits
                 echo ----------------------file--------------------
