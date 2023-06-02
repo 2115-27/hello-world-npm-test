@@ -31,7 +31,7 @@ jobs:
                 
                 
                 echo ------------------------commits.md---------------------------------
-                PRNumber=$(gh pr view -c --json number --jq '.number')
+                PRNumber=$(gh pr view ${{ github.event.pull_request.head.ref }} -c --json number --jq '.number')
                 echo $PRNumber is PRNumber
                 url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
                 echo $url is url
