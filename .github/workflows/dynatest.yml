@@ -49,8 +49,8 @@ jobs:
               pwd
               ls -lrta
               
-              git checkout ${{ github.event.pull_request.base.ref }}
-              git merge ${{ github.event.pull_request.head.ref }}
+              #git checkout ${{ github.event.pull_request.base.ref }}
+              #git merge ${{ github.event.pull_request.head.ref }}
               
               #mkdir Current-branch
               #echo ---------------current branch is here-------------
