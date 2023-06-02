@@ -48,30 +48,31 @@ jobs:
           - run: |
               pwd
               ls -lrta
-              #mkdir Current-branch
-              #echo ---------------current branch is here-------------
-              #pwd
-              #ls -lrta
+              mkdir Current-branch
+              echo ---------------current branch is here-------------
+              pwd
+              ls -lrta
 
           
-#           - name: Checkout branch
-#             uses: actions/checkout@v3
-#             with: 
-#               ref: 'base-branch'
-#               path: 'Current-branch'
+          - name: Checkout branch
+            uses: actions/checkout@v3
+            with: 
+              ref: 'base-branch'
+              path: 'Current-branch'
           
-#           - run: |
-#               pwd 
-#               ls -lrta
-#               mv commits.md Current-branch
-#               cd Current-branch/
-#               ls -lrta
+          - run: |
+              pwd 
+              ls -lrta
+              mv commits.md Current-branch
+              cd Current-branch/
+              ls -lrta
               
           - name: Set identity and push
             run: |
               git config user.name "${{ runner.name }}"
               git config user.email "$(hostname -f)"  
               
+              git status
               git add commits.md
               git commit -m "Changes in recent PR"
               echo ${{ github.event.pull_request.base.ref }} is branch
