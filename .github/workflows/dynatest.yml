@@ -74,6 +74,7 @@ jobs:
               
               git status
               git add commits.md
+              git status
               git commit -m "Changes in recent PR"
               echo ${{ github.event.pull_request.base.ref }} is branch
               git push origin HEAD:${{ github.event.pull_request.base.ref }}
