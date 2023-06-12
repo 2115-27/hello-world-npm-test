@@ -12,78 +12,90 @@ jobs:
             uses: actions/checkout@v2
 #             with:
 #               ref: ${{ github.event.pull_request.head.ref }}
-          
-          - name: View Pull Request
-            run: |
-                pwd
-                echo #################################
-                echo ------------------commits---------------------
-                gh pr view ${{ github.event.pull_request.head.ref }} --json commits
-                echo ----------------------file--------------------
-                gh pr view ${{ github.event.pull_request.head.ref }} -c --json commits --jq '.commits' > pr-info.json
 
-                cat pr-info.json 
-                
-                echo -----------deleting already existing commits.md file--------------------
-                if [ -f "commits.md" ]; then
-                    rm "commits.md"
-                fi
-                
-                
-                echo ------------------------commits.md---------------------------------
-                PRNumber=$(gh pr view ${{ github.event.pull_request.head.ref }} -c --json number --jq '.number')
-                echo $PRNumber is PRNumber
-                url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
-                echo $url is url
-                jq -r --arg url "$url" '.[] | "- \(.authors[0].name) - \(.messageHeadline) - [\("details")](\($url + "/" + .oid)) "' pr-info.json | while IFS= read -r line; do echo "$line" >> commits.md; done
-                sed -E 's#(https?://[^ ]+)#<a href="\1">details</a>#g' commits.md
-                
-                cat commits.md
-                
-               
-          
-            env:
-               GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }} 
-               
           - run: |
-              pwd
-              ls -lrta
+             git config user.name "${{ runner.name }}"
+             git config user.email "$(hostname -f)"
+             echo "------------------current branch----------------------"
+             git branch
+             git checkout branch-for-pr
+             git rm delete.md
+             git commit -m "Removing md file from branch-for-pr branch"
+             echo ${{ github.event.pull_request.head.ref }} is branch
+             git push origin HEAD:${{ github.event.pull_request.head.ref }}
+             
+          
+#           - name: View Pull Request
+#             run: |
+#                 pwd
+#                 echo #################################
+#                 echo ------------------commits---------------------
+#                 gh pr view ${{ github.event.pull_request.head.ref }} --json commits
+#                 echo ----------------------file--------------------
+#                 gh pr view ${{ github.event.pull_request.head.ref }} -c --json commits --jq '.commits' > pr-info.json
+
+#                 cat pr-info.json 
+                
+#                 echo -----------deleting already existing commits.md file--------------------
+#                 if [ -f "commits.md" ]; then
+#                     rm "commits.md"
+#                 fi
+                
+                
+#                 echo ------------------------commits.md---------------------------------
+#                 PRNumber=$(gh pr view ${{ github.event.pull_request.head.ref }} -c --json number --jq '.number')
+#                 echo $PRNumber is PRNumber
+#                 url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
+#                 echo $url is url
+#                 jq -r --arg url "$url" '.[] | "- \(.authors[0].name) - \(.messageHeadline) - [\("details")](\($url + "/" + .oid)) "' pr-info.json | while IFS= read -r line; do echo "$line" >> commits.md; done
+#                 sed -E 's#(https?://[^ ]+)#<a href="\1">details</a>#g' commits.md
+                
+#                 cat commits.md
+                
+               
+          
+#             env:
+#                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }} 
+               
+#           - run: |
+#               pwd
+#               ls -lrta
               
-              #git checkout ${{ github.event.pull_request.base.ref }}
-              #git merge ${{ github.event.pull_request.head.ref }}
+#               #git checkout ${{ github.event.pull_request.base.ref }}
+#               #git merge ${{ github.event.pull_request.head.ref }}
               
-              #mkdir Current-branch
-              #echo ---------------current branch is here-------------
-              #pwd
-              #ls -lrta
+#               #mkdir Current-branch
+#               #echo ---------------current branch is here-------------
+#               #pwd
+#               #ls -lrta
 
           
-#           - name: Checkout branch
-#             uses: actions/checkout@v3
-#             with: 
-#               ref: 'base-branch'
-#               path: 'Current-branch'
+# #           - name: Checkout branch
+# #             uses: actions/checkout@v3
+# #             with: 
+# #               ref: 'base-branch'
+# #               path: 'Current-branch'
           
-#           - run: |
-#               pwd 
-#               ls -lrta
-#               mv commits.md Current-branch
-#               cd Current-branch/
-#               ls -lrta
+# #           - run: |
+# #               pwd 
+# #               ls -lrta
+# #               mv commits.md Current-branch
+# #               cd Current-branch/
+# #               ls -lrta
               
-          - name: Set identity and push
-            run: |
-              git config user.name "${{ runner.name }}"
-              git config user.email "$(hostname -f)"  
+#           - name: Set identity and push
+#             run: |
+#               git config user.name "${{ runner.name }}"
+#               git config user.email "$(hostname -f)"  
               
-              git status
-              echo --------------------------------------------------
-              git add commits.md
-              echo --------------------------------------------------
-              git status
-              git commit -m "Changes in recent PR"
-              echo ${{ github.event.pull_request.base.ref }} is branch
-              git push origin HEAD:${{ github.event.pull_request.base.ref }}
+#               git status
+#               echo --------------------------------------------------
+#               git add commits.md
+#               echo --------------------------------------------------
+#               git status
+#               git commit -m "Changes in recent PR"
+#               echo ${{ github.event.pull_request.base.ref }} is branch
+#               git push origin HEAD:${{ github.event.pull_request.base.ref }}
                
-            env:
-               GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
+#             env:
+#                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
