@@ -14,7 +14,7 @@ jobs:
               ref: ${{ github.event.pull_request.head.ref }}
 
           - run: |
-             gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author'
+             gh pr view ${{ github.event.pull_request.head.ref }} --json user.login --jq '.user.login'
              PRAuthor=$(gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author')
              git config user.name "${{ runner.name }}"
              git config user.email "$(hostname -f)"
