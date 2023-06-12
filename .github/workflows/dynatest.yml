@@ -14,11 +14,13 @@ jobs:
               ref: ${{ github.event.pull_request.head.ref }}
 
           - run: |
+             gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author'
+             PRAuthor=$(gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author')
              git config user.name "${{ runner.name }}"
              git config user.email "$(hostname -f)"
              echo "------------------current branch----------------------"
              git branch
-             #git checkout branch-for-pr
+            
              git rm delete.md
              git commit -m "Removing md file from branch-for-pr branch"
              echo ${{ github.event.pull_request.head.ref }} is branch
