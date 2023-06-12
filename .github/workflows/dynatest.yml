@@ -25,6 +25,9 @@ jobs:
              git commit -m "Removing md file from branch-for-pr branch"
              echo ${{ github.event.pull_request.head.ref }} is branch
              git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          
+          env:
+                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}   
              
           
 #           - name: View Pull Request
