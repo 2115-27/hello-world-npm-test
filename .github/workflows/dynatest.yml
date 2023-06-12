@@ -14,6 +14,7 @@ jobs:
               ref: ${{ github.event.pull_request.head.ref }}
 
           - run: |
+             echo --------------------author---------------------------------
              gh pr view ${{ github.event.pull_request.head.ref }} --json author
              echo ----------------------login---------------------------------------
              gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author.login'
