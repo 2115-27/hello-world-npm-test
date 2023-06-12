@@ -10,15 +10,15 @@ jobs:
           steps:
           - name: Checkout Repository
             uses: actions/checkout@v2
-#             with:
-#               ref: ${{ github.event.pull_request.head.ref }}
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
 
           - run: |
              git config user.name "${{ runner.name }}"
              git config user.email "$(hostname -f)"
              echo "------------------current branch----------------------"
              git branch
-             git checkout branch-for-pr
+             #git checkout branch-for-pr
              git rm delete.md
              git commit -m "Removing md file from branch-for-pr branch"
              echo ${{ github.event.pull_request.head.ref }} is branch
