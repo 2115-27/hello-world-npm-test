@@ -19,7 +19,7 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - run: |
-            response=$(curl -s -o /dev/null -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/commits.md?ref=master")
+            response=$(curl -s -o /dev/null -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=master")
             echo $response is the response
           
           env:
