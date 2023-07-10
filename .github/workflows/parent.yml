@@ -19,9 +19,9 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - run: |
-            response=$(curl -s -o "$output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=master")
+            response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=master")
             echo $response is the response
-            cat $output_file
+            cat output_file
           
           env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
