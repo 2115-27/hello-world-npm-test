@@ -28,6 +28,7 @@ jobs:
             ls -lrta    
             cd master/
             ls -lrta
+            pwd
             if [[ -f "master/testing.md" ]]; then
               echo file exists
             else
