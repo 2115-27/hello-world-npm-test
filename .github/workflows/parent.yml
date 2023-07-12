@@ -28,6 +28,8 @@ jobs:
             ls -lrta    
             cd master/
             ls -lrta
+            echo ----------------workspace-----------------------
+            echo ${{ github.workspace }}
             pwd
             if [[ -f "master/testing.md" ]]; then
               echo file exists
