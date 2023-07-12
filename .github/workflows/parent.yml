@@ -31,7 +31,7 @@ jobs:
             echo ----------------workspace-----------------------
             echo ${{ github.workspace }}
             pwd
-            if [[ -f "master/testing.md" ]]; then
+            if [[ -f "${{ github.workspace }}/master/testing.md" ]]; then
               echo file exists
             else
               echo file does not exists
