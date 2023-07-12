@@ -19,7 +19,7 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - run: |
-            response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=master")
+            response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=branch-for-testing")
             echo $response is the response
             download_url=$(jq -r '.download_url' "output_file")
             curl -s -o "file_content" $download_url
