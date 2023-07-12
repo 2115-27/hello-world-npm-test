@@ -17,16 +17,27 @@ jobs:
      TestJob: 
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
+        - run: mkdir master/
+        
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            path: master
+            
         - run: |
-            response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=branch-for-testing")
-            echo $response is the response
-            download_url=$(jq -r '.download_url' "output_file")
-            curl -s -o "file_content" $download_url
-            cat file_content 
+            ls -lrta    
+            cd master/
+            ls -lrta
+
+#         - run: |
+#             response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=branch-for-testing")
+#             echo $response is the response
+#             download_url=$(jq -r '.download_url' "output_file")
+#             curl -s -o "file_content" $download_url
+#             cat file_content 
           
-          env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           env:
+#              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
              
 #         - run: |
 #             echo ${{ github.run_number }}
