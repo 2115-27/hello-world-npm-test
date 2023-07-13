@@ -29,7 +29,8 @@ jobs:
 #             path: master
             
         - run: |
-            gh pr view ${{ github.event.pull_request.head.ref }} --json number
+            PRNumber=$(gh pr view ${{ github.event.pull_request.head.ref }} --json number --jq '.number')
+            echo $PRNumber is PRNumber
           env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
