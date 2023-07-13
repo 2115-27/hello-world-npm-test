@@ -15,7 +15,7 @@ jobs:
           - name: View Pull Request
             run: |
                 echo ------------------commits---------------------
-                gh pr view --json commits
+                gh pr view --json number
                 echo ----------------------file--------------------
                 gh pr view -c --json commits --jq '.commits' > pr-info.json
 
