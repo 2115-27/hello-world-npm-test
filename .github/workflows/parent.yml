@@ -1,15 +1,17 @@
 name: Parentworkflow
 on:
-  workflow_dispatch:
-    inputs: 
-       Brand:
-          description: 'Brand Type'
-          type: choice
-          required: true
-          options:
-            - BRAND 1
-            - Brand2
-            - Brand3
+  pull_request:
+     types: [closed]
+    
+#     inputs: 
+#        Brand:
+#           description: 'Brand Type'
+#           type: choice
+#           required: true
+#           options:
+#             - BRAND 1
+#             - Brand2
+#             - Brand3
 
 
 jobs:
@@ -17,25 +19,30 @@ jobs:
      TestJob: 
       runs-on: ubuntu-latest
       steps:
-        - run: mkdir master/
+#         - run: mkdir master/
         
         - name: Checkout
           uses: actions/checkout@v3
-          with:
-            path: master
+#           with:
+#             path: master
             
         - run: |
-            ls -lrta    
-            cd master/
-            ls -lrta
-            echo ----------------workspace-----------------------
-            echo ${{ github.workspace }}
-            pwd
-            if [[ -f "${{ github.workspace }}/master/testing.md" ]]; then
-              echo file exists
-            else
-              echo file does not exists
-            fi  
+            gh pr view ${{ github.event.pull_request.head.ref }} --json number
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
+#         - run: |
+#             ls -lrta    
+#             cd master/
+#             ls -lrta
+#             echo ----------------workspace-----------------------
+#             echo ${{ github.workspace }}
+#             pwd
+#             if [[ -f "${{ github.workspace }}/master/testing.md" ]]; then
+#               echo file exists
+#             else
+#               echo file does not exists
+#             fi  
 
 #         - run: |
 #             response=$(curl -s -o "output_file" -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/testing.md?ref=branch-for-testing")
@@ -99,13 +106,13 @@ jobs:
 #           env:
 #             GH_TOKEN: ${{ secrets.REPO }}
      
-     ChildJob:
-       needs: TestJob
-       uses: ./.github/workflows/child2.yml
-       with:
-         Brand: ${{ inputs.Brand }}
-       secrets:
-         REPO: ${{ secrets.REPO }}
+#      ChildJob:
+#        needs: TestJob
+#        uses: ./.github/workflows/child2.yml
+#        with:
+#          Brand: ${{ inputs.Brand }}
+#        secrets:
+#          REPO: ${{ secrets.REPO }}
          
          
          
