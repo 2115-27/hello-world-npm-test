@@ -22,8 +22,8 @@ jobs:
        - run: echo ${{ github.run_number }}
        
        - name: step should not run
-         if: ${{ github.event_name == 'workflow_dispatch' }}
-         run: echo test
+         
+         run: echo $GITHUB_EVENT_NAME is event
        
 #       - name: Checkout code
 #         uses: actions/checkout@v3
