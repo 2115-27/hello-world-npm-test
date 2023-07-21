@@ -1,5 +1,15 @@
 name: Parentworkflow
 on:
+  workflow_dispatch:
+    inputs: 
+       Brand:
+          description: 'Brand Type'
+          type: choice
+          required: true
+          options:
+            - BRAND 1
+            - Brand2
+            - Brand3
   pull_request:
      types: [closed]
  
