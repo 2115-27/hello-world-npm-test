@@ -1,0 +1,31 @@
+name: Cache_action
+
+on:
+  workflow_dispatch:
+
+jobs:        
+  Cache_Action:
+    runs-on: ubuntu-latest
+    outputs:
+      currentversion: ${{ steps.version.outputs.currentversion }}
+    steps:
+      - uses: actions/checkout@v2
+      - run : |
+          echo 12.2.03.900 > sample.txt
+          ls -lrta
+      
+      - name: Cache sample file
+        uses: actions/cache@v3
+        with:
+          path: ./sample.txt
+          key: key-${{ github.run_number }}
+
+      - uses: actions/checkout@v3
+      - run: |
+          gh workflow run buildno.yml --ref master -f sample=key-${{ github.run_number }}  
+
+        env:
+            GH_TOKEN: ${{ secrets.CACHE }}
+          
+            
+            
