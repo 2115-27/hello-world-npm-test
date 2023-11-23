@@ -15,7 +15,7 @@ jobs:
           ls -lrta
       
       - name: Cache sample file
-        uses: actions/cache@v3
+        uses: actions/cache/save@v3
         with:
           path: ./sample.txt
           key: key-${{ github.run_number }}
