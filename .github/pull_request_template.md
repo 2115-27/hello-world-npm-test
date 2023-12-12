@@ -7,14 +7,11 @@ AB#
 ## Checklist before requesting a review
 - [ ] I have performed a self-review of my code
 - [ ] Unit Review
-- [ ] Functionality Review
+- [X] Functionality Review
 
-<details>
-  <summary>Choose an option:</summary>
-  <select>
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-    <option value="option3">Option 3</option>
-  </select>  
-</details>
-
+<select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
