@@ -9,6 +9,7 @@ jobs:
     environment: STG
     steps: 
       - run: |
+          echo test
           echo stage deployment steps
           
 
