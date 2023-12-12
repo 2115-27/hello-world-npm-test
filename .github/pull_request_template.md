@@ -9,9 +9,12 @@ AB#
 - [ ] Unit Review
 - [X] Functionality Review
 
-<select name="cars" id="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
+<form action="">
+  <input type="radio" name="rdo" id="yes" checked />
+  <input type="radio" name="rdo" id="no"/>
+  <div class="switch">
+    <label for="yes">Yes</label>
+    <label for="no">No</label>
+    <span></span>
+  </div>
+</form>
