@@ -7,7 +7,7 @@ AB#
 ## Checklist before requesting a review
 - [ ] I have performed a self-review of my code
 - [ ] Unit Review
-- [ ] Functionality Review
+- [X] Functionality Review
 
 <select name="cars" id="cars">
   <option value="volvo">Volvo</option>
