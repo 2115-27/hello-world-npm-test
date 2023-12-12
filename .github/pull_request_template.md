@@ -11,8 +11,10 @@ AB#
 
 <details>
   <summary>Choose an option:</summary>
-  - [X] Option 1
-  - [ ] Option 2
-  - [ ] Option 3
+  <select>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </select>  
 </details>
 
