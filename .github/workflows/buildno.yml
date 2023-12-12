@@ -2,6 +2,10 @@ name: pgbuildtest
 
 on:
   workflow_dispatch:
+   inputs:
+    sample:
+       type: string
+       required: true
 env:
   GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
 jobs:        
@@ -11,29 +15,37 @@ jobs:
       currentversion: ${{ steps.version.outputs.currentversion }}
     steps:
       - uses: actions/checkout@v2
-      - id: version
-        run: |
-            echo -----
-            echo $GITHUB_REF_NAME
-            if [[ $GITHUB_REF_NAME == "master" || $GITHUB_REF_NAME == "dev-WIP3-sonartest" ]];then
-              echo "${{ github.run_number }}" >> version.cfg
-              newversion=$(cat version.cfg | tr -d "[:space:]")
-              echo $newversion is the version
-              echo "::set-output name=currentversion::$newversion" 
-            else
-              ReleaseVersion="1.0-SNAPSHOT"
-              echo $ReleaseVersion is the version
-              echo "::set-output name=currentversion::$ReleaseVersion"
-            fi
-  build:
-    runs-on: ubuntu-latest
-    needs: Set_Release_Version
-    steps:
-      - run: |
-          echo ------java version------
-          java -version
-          if [[ ${{needs.Set_Release_Version.outputs.currentversion}} == "1.0-SNAPSHOT" ]]; then
-           echo building for snapshot
-          else
-           echo building for release
-          fi 
+      - name: Cache sample file
+        uses: actions/cache@v3
+        with:
+          path: ./sample.txt
+          key: ${{ inpiuts.sample }} 
+          
+      - run: cat sample.txt/
+      
+  #     - id: version
+  #       run: |
+  #           echo -----
+  #           echo $GITHUB_REF_NAME
+  #           if [[ $GITHUB_REF_NAME == "master" || $GITHUB_REF_NAME == "dev-WIP3-sonartest" ]];then
+  #             echo "${{ github.run_number }}" >> version.cfg
+  #             newversion=$(cat version.cfg | tr -d "[:space:]")
+  #             echo $newversion is the version
+  #             echo "::set-output name=currentversion::$newversion" 
+  #           else
+  #             ReleaseVersion="1.0-SNAPSHOT"
+  #             echo $ReleaseVersion is the version
+  #             echo "::set-output name=currentversion::$ReleaseVersion"
+  #           fi
+  # build:
+  #   runs-on: ubuntu-latest
+  #   needs: Set_Release_Version
+  #   steps:
+  #     - run: |
+  #         echo ------java version------
+  #         java -version
+  #         if [[ ${{needs.Set_Release_Version.outputs.currentversion}} == "1.0-SNAPSHOT" ]]; then
+  #          echo building for snapshot
+  #         else
+  #          echo building for release
+  #         fi 
