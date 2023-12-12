@@ -18,3 +18,5 @@ AB#
   </select>  
 </details>
 
+<input type="checkbox" name="option1"> Option 1
+<input type="checkbox" name="option2"> Option 2
