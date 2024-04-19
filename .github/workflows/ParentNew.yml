@@ -1,0 +1,31 @@
+
+name: Parentworkflow
+on:
+  workflow_dispatch:
+    inputs: 
+       OtherInput:
+          description: 'Brand Type'
+          type: choice
+          required: true
+          options:
+            - BRAND 1
+            - Brand2
+            - Brand3
+
+
+jobs:
+     
+     TestJob: 
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+
+     
+     ChildJob:
+       needs: TestJob
+       uses: ./.github/workflows/parent.yml
+       with:
+         Brand: ${{ inputs.Brand }}
+         
+         
+         
