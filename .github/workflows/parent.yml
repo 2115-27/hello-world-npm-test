@@ -10,6 +10,8 @@ on:
             - BRAND 1
             - Brand2
             - Brand3
+       secondInput:
+         type: string
 
 
 jobs:
