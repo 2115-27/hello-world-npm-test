@@ -1,5 +1,9 @@
 name: Parentworkflow
 on:
+  workflow_call:
+    inputs:
+      Brand: 
+        type: string
   workflow_dispatch:
     inputs: 
        Brand:
